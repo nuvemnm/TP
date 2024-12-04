@@ -2,39 +2,20 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include "functions.hpp"
+
+
+
 int main(){
-    std::ifstream file("cad.r1000.p1000.xcsv");
+    std::ifstream file1("cad.r1000.p1000.xcsv");
+    std::ifstream file2("cad.r1000.p5000.xcsv");
+    std::ifstream file3("cad.r5000.p1000.xcsv");
+    std::ifstream file4("cad.r5000.p5000.xcsv");
 
 
-        // Verificar se o arquivo foi aberto com sucesso
-        if (!file.is_open()) {
-            std::cerr << "Erro ao abrir o arquivo!" << std::endl;
-            return 1;
-        }
+    std::string *fields1 = new std::string[1000];
+    std::string *fields2 = new std::string[5000];
 
-        std::string line;
-        std::string *fields = new std::string[1000];
-        int count = 0;
-        // Ler linha por linha do arquivo
-        while (std::getline(file, line)) {
-            //std::stringstream ss(line);    
-            // Separar os campos por vírgula
-            if(count < 1000){
-                fields[count++] = line;
-            }else{
-                break;
-            }
-            
-        }
+    leArquivo(file3, fields2);
 
-        // Exibir os campos lidos
-        for (int j = 0; j < 6; j++) {
-            std::cout << fields[j] << "\n";
-        }
-        std::cout << std::endl;
-
-        // Fechar o arquivo
-        file.close();
-
-        return 0;
 }
