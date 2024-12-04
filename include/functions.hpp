@@ -4,4 +4,5 @@
 #include <string>
 #include <vector>
 
-void leArquivo(std::ifstream& arquivo, std::string *array);
+int readHeader(std::ifstream& arquivo);
+void leArquivo(std::ifstream& arquivo);
