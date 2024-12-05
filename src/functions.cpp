@@ -13,56 +13,68 @@ int readHeader(std::ifstream& arquivo){
     return n;
 }
 
-std::string extractValue(int field, std::string line){
-    std::string nome;
-    std::string cpf;
-    std::string address;
-    std::stringstream ss(line);
-    switch (field){
-
-        case 0:
-        std::getline(ss, nome, ',');
-        std::cout<<nome;
-        return nome;
-        break;
-
-        case 1:
-        std::getline(ss, nome, ',');
-        std::getline(ss, cpf, ',');
-        return cpf;
-        break;
-
-        case 2:
-        std::getline(ss, nome, ',');
-        std::getline(ss, cpf, ',');
-        std::getline(ss, address, ',');
-        return address;
-        break;
-    }
-    return "error";
+void swap(int* index1, int* index2) {
+    int* temp = index1;
+    index1 = index2;
+    index2 = temp;
 }
 
 
 
-void selectionSort(int field, int numLines, std::string * string){
+void initIndice(int n, int indice[]){
+    
+    for(int i = 0; i < n; i++){
+        indice[i] = i;
+    }
+}
+
+void selectionSort(int numLines, std::string string[], int index[]){
     for(int i = 0; i < numLines-1; i++){
-        int menor = i;
+        int minor = i;
         for(int j = i+1; j < numLines; j++){
-            if(extractValue(field, string[j]) < extractValue(field, string[i])){
-                menor = j;
+            if(string[index[j]] < string[index[i]]){
+                minor = j;
             }
         }
-        /*
-        std::string aux = string[i];
-        string[i] = string[menor];
-        string[menor]  = aux; 
-        */
-        if(menor != i){
-            std::swap(string[i], string[menor]);
+        if(minor != i){
+            swap(&index[i], &index[minor]);
         }
             
     }
     return;
+}
+
+void loadArchive(std::string * names, std::string * cpf, std::string * address, std::string * payload, std::ifstream& archive){
+    
+    std::string line;
+    std::string header;
+
+    for(int i = 0; i < 6; i++){
+        getline(archive, header);
+    }
+
+    int j = 0;
+    int position = 0;
+    while(getline(archive, line)){
+
+        position = line.find(',');
+        names[j] = line.substr(0, position);
+        line = line.substr(position + 1, line.length());
+
+        position = line.find(',');
+        cpf[j] = line.substr(0, position);
+        line = line.substr(position + 1, line.length());
+
+        position = line.find(',');
+        address[j] = line.substr(0, position);
+        line = line.substr(position + 1, line.length());
+
+        position = line.find(',');
+        payload[j] = line.substr(0, position);
+        line = line.substr(position + 1, line.length());
+
+        j++;
+    }
 }
 
 
@@ -104,50 +116,21 @@ void leArquivo(std::ifstream& arquivo){
 }
 
 
-void ordenaNome(std::ifstream& arquivo){
-    // Verificar se o arquivo foi aberto com sucesso
-    if (!arquivo.is_open()) {
-        std::cerr << "Erro ao abrir o arquivo!" << std::endl;
-        return;
-    }
-
-    //número de linhas
-    int numLines = readHeader(arquivo);
-    //vetor de strings com tamanho igual ao número de linhas
-    std::string *array = new std::string[numLines];
-
-    int count = 0;
-    std::string line;
-    // Ler linha por linha do arquivo
-    while (std::getline(arquivo, line) && count < numLines) {   
-        // Separar os campos por vírgula
-        array[count++] = line;  
-    }
-
-
-    selectionSort(0, numLines, array);
-    // Exibir os campos lidos
-    /*
-    for (int j = 0; j < (numLines - 996); j++) {
-        std::cout << array[j] << "\n";
-    }
-    */
-
-    delete[] array;
-    // Fechar o arquivo
-    arquivo.close();
-
-    return;
-  
-}
-
-
-
-void initIndice(int n, int indice[]){
+void ordenaNome(int numLines, std::string * names, std::string * cpf, std::string * address, std::string * payload){
     
-    for(int i = 0; i < n; i++){
-        indice[i] = i;
+    int *index = new int[numLines];
+    initIndice(numLines, index);
+    selectionSort(numLines, names, index);
+
+
+    for (int i = 0; i < 4; i++)
+    {
+        std::cout << names[index[i]] << "," << cpf[index[i]] << "," << address[index[i]] << "," << payload[index[i]] << std::endl;
     }
+
 }
+
+
+
 
 
