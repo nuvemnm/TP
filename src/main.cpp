@@ -10,6 +10,6 @@ int main(int argc, char *argv[]){
 
     std::ifstream arquivo(argv[1]);
    
-    leArquivo(arquivo);
+    ordenaNome(arquivo);
 
 }
