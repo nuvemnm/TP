@@ -16,10 +16,10 @@ void initIndice(int n, int indice[]){
     }
 }
 
-void selectionSort(int numLines, std::string *string, int * index){
-    for(int i = 0; i < numLines-1; i++){
+void selectionSort(std::string *string, int * index, int tam){
+    for(int i = 0; i < tam-1; i++){
         int minor = i;
-        for(int j = i+1; j < numLines; j++){
+        for(int j = i+1; j < tam; j++){
             if(string[index[j]] < string[index[minor]]){
                 minor = j;
             }
@@ -67,6 +67,20 @@ void quickSort(std::string * array, int * index, int low, int high){
     }
 }
 
+void insertionSort(std::string * array,int * index, int tam){
+     for(int i = 1;  i < tam; i++){
+        int keyIndex = index[i];
+        std::string key = array[keyIndex];
+        int j = i - 1;
+
+        while(j >= 0 && array[index[j]] > key){
+            index[j+1] = index[j];
+            j--;
+        }
+        index[j+1] = keyIndex;
+     }
+}
+
 void loadArchive(std::string * names, std::string * cpf, std::string * address, std::string * payload, std::ifstream& archive){
     
     std::string line = "";
@@ -97,33 +111,47 @@ void loadArchive(std::string * names, std::string * cpf, std::string * address, 
 
 
 
-void selectionNameSort(int numLines, std::string * names, int * index){  
-    initIndice(numLines, index);
-    selectionSort(numLines, names, index);
+void selectionNameSort(int tam, std::string * names, int * index){  
+    initIndice(tam, index);
+    selectionSort(names, index, tam);
 }
 
-
-void selectionCpfSort(int numLines, std::string * cpf, int * index){
-    initIndice(numLines, index);
-    selectionSort(numLines, cpf, index);   
+void selectionCpfSort(int tam, std::string * cpf, int * index){
+    initIndice(tam, index);
+    selectionSort(cpf, index, tam);   
 }
 
-void selectionAddressSort(int numLines, std::string * address, int * index){
-    initIndice(numLines, index);
-    selectionSort(numLines, address, index);
+void selectionAddressSort(int tam, std::string * address, int * index){
+    initIndice(tam, index);
+    selectionSort(address, index, tam);
 }
 
-void quickNameSort(int numLines, std::string * names, int * index){
-    initIndice(numLines, index);
-    quickSort(names, index, 0, numLines - 1);
+void quickNameSort(int tam, std::string * names, int * index){
+    initIndice(tam, index);
+    quickSort(names, index, 0, tam - 1);
 }
 
-void quickCpfSort(int numLines, std::string * cpf, int * index){
-    initIndice(numLines, index);
-    quickSort(cpf, index, 0, numLines - 1);
+void quickCpfSort(int tam, std::string * cpf, int * index){
+    initIndice(tam, index);
+    quickSort(cpf, index, 0, tam - 1);
 }
 
-void quickAddressSort(int numLines, std::string * address, int * index){
-    initIndice(numLines, index);
-    quickSort(address, index, 0, numLines - 1);
+void quickAddressSort(int tam, std::string * address, int * index){
+    initIndice(tam, index);
+    quickSort(address, index, 0, tam - 1);
+}
+
+void insetionNameSort(std::string * names, int * index, int tam){
+    initIndice(tam, index);
+    insertionSort(names, index, tam);
+}
+
+void insetionCpfSort(std::string * cpf, int * index, int tam){
+    initIndice(tam, index);
+    insertionSort(cpf, index, tam);
+}
+
+void insetionAddressSort(std::string * address, int * index, int tam){
+    initIndice(tam, index);
+    insertionSort(address, index, tam);
 }
