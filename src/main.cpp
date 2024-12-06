@@ -48,6 +48,7 @@ int main(int argc, char *argv[]){
     {
         std::cout << names[index[i]] << "," << cpf[index[i]] << "," << address[index[i]] << "," << payload[index[i]] << std::endl;
     }
+    
     //Ordenação por CPF
     selectionCpfSort(n, cpf, index);
 
@@ -56,9 +57,8 @@ int main(int argc, char *argv[]){
         std::cout << header[i] << std::endl;
     }
 
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < n; i++)
     {
-        std::cout << names[0]<<std::endl;
         std::cout << names[index[i]] << "," << cpf[index[i]] << "," << address[index[i]] << "," << payload[index[i]] << std::endl;
     }
 
@@ -154,7 +154,6 @@ int main(int argc, char *argv[]){
         std::cout << names[index[i]] << "," << cpf[index[i]] << "," << address[index[i]] << "," << payload[index[i]] << std::endl;
     }
     
-
     delete[] names;
     delete[] cpf;
     delete[] address;

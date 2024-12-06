@@ -44,5 +44,3 @@ clean:
 # Regra 'all' para compilar e executar os comandos especificados
 all: $(EXEC)
 
-run: all
-	./$(EXEC)

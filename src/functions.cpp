@@ -1,12 +1,12 @@
 #include "../include/functions.hpp"
 
-/*
+
 void swap(int* index1, int* index2) {
-    int* temp = index1;
-    index1 = index2;
-    index2 = temp;
+    int temp = *index1;
+    *index1 = *index2;
+    *index2 = temp;
 }
-*/
+
 
 
 void initIndice(int n, int indice[]){
@@ -26,7 +26,7 @@ void selectionSort(std::string *string, int * index, int tam){
         }
         
         if(minor != i){
-            std::swap(index[i], index[minor]);
+            swap(&index[i], &index[minor]);
         }
             
     }
@@ -44,11 +44,11 @@ int partition(std::string * array, int * index, int low, int high){
             //Se o elemento for menor que o pivo 
             //troca ele com o maior elemento (i)
             i++;
-            std::swap(index[i], index[j]);
+            swap(&index[i], &index[j]);
         }
     }
     //Troca o pivo com o maior elemento a aprtir de i
-    std::swap(index[i+1], index[high]);
+    swap(&index[i+1], &index[high]);
 
     return (i+1);
 }
