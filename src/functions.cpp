@@ -7,8 +7,6 @@ void swap(int* index1, int* index2) {
     *index2 = temp;
 }
 
-
-
 void initIndice(int n, int indice[]){
     
     for(int i = 0; i < n; i++){
@@ -110,48 +108,12 @@ void loadArchive(std::string * names, std::string * cpf, std::string * address, 
 }
 
 
+void printOutput(int * index, std::string * header, std::string * names, std::string * cpf, std::string * address, std::string * payload, int n){
+    for (int i = 0; i < 6; i++){
+        std::cout << header[i] << std::endl;
+    }
 
-void selectionNameSort(int tam, std::string * names, int * index){  
-    initIndice(tam, index);
-    selectionSort(names, index, tam);
-}
-
-void selectionCpfSort(int tam, std::string * cpf, int * index){
-    initIndice(tam, index);
-    selectionSort(cpf, index, tam);   
-}
-
-void selectionAddressSort(int tam, std::string * address, int * index){
-    initIndice(tam, index);
-    selectionSort(address, index, tam);
-}
-
-void quickNameSort(int tam, std::string * names, int * index){
-    initIndice(tam, index);
-    quickSort(names, index, 0, tam - 1);
-}
-
-void quickCpfSort(int tam, std::string * cpf, int * index){
-    initIndice(tam, index);
-    quickSort(cpf, index, 0, tam - 1);
-}
-
-void quickAddressSort(int tam, std::string * address, int * index){
-    initIndice(tam, index);
-    quickSort(address, index, 0, tam - 1);
-}
-
-void insetionNameSort(std::string * names, int * index, int tam){
-    initIndice(tam, index);
-    insertionSort(names, index, tam);
-}
-
-void insetionCpfSort(std::string * cpf, int * index, int tam){
-    initIndice(tam, index);
-    insertionSort(cpf, index, tam);
-}
-
-void insetionAddressSort(std::string * address, int * index, int tam){
-    initIndice(tam, index);
-    insertionSort(address, index, tam);
+    for (int j = 0; j < n; j++){
+        std::cout << names[index[j]] << "," << cpf[index[j]] << "," << address[index[j]] << "," << payload[index[j]] << std::endl;
+    }
 }

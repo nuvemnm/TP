@@ -31,128 +31,69 @@ int main(int argc, char *argv[]){
     std::string *cpf = new std::string[n];
     std::string *address = new std::string[n];
     std::string *payload = new std::string[n];
-    //arquivo.seekg(0, std::ios::beg);
+    
     loadArchive(names,cpf, address, payload, arquivo);
 
     
     //============================================================= SELECTION SORT =============================================================
-    //Ordenação por nome
-    selectionNameSort(n, names, index);
-     
-    for (int i = 0; i < 6; i++)
-    {
-        std::cout << header[i] << std::endl;
-    }
-   
-    for (int i = 0; i < n; i++)
-    {
-        std::cout << names[index[i]] << "," << cpf[index[i]] << "," << address[index[i]] << "," << payload[index[i]] << std::endl;
-    }
     
+    //Ordenação por nome
+    initIndice(n, index);
+    selectionSort(names, index, n);
+     
+    printOutput(index, header, names, cpf, address, payload, n);
+
     //Ordenação por CPF
-    selectionCpfSort(n, cpf, index);
+    initIndice(n, index);
+    selectionSort(cpf, index, n);
 
-    for (int i = 0; i < 6; i++)
-    {
-        std::cout << header[i] << std::endl;
-    }
-
-    for (int i = 0; i < n; i++)
-    {
-        std::cout << names[index[i]] << "," << cpf[index[i]] << "," << address[index[i]] << "," << payload[index[i]] << std::endl;
-    }
+    printOutput(index, header, names, cpf, address, payload, n);
 
     //Ordenação por endereço
-    selectionAddressSort(n, address, index);
+    initIndice(n, index);
+    selectionSort(address, index, n);
 
-    for (int i = 0; i < 6; i++)
-    {
-        std::cout << header[i] << std::endl;
-    }
-
-    for (int i = 0; i < n; i++)
-    {
-        std::cout << names[index[i]] << "," << cpf[index[i]] << "," << address[index[i]] << "," << payload[index[i]] << std::endl;
-    }
+    printOutput(index, header, names, cpf, address, payload, n);
 
     //=============================================================== QUICKSORT ===============================================================
+    
     //Ordenação por nome
-    quickNameSort(n, names, index);
+    initIndice(n, index);
+    quickSort(names, index, 0, n - 1);
 
-    for (int i = 0; i < 6; i++)
-    {
-        std::cout << header[i] << std::endl;
-    }
-
-    for (int i = 0; i < n; i++)
-    {
-        std::cout << names[index[i]] << "," << cpf[index[i]] << "," << address[index[i]] << "," << payload[index[i]] << std::endl;
-    }
+    printOutput(index, header, names, cpf, address, payload, n);
     
     //Ordenação por CPF
-    quickCpfSort(n, cpf, index);
+    initIndice(n, index);
+    quickSort(cpf, index, 0, n - 1);
 
-    for (int i = 0; i < 6; i++)
-    {
-        std::cout << header[i] << std::endl;
-    }
-    
-    for (int i = 0; i < n; i++)
-    {
-        std::cout << names[index[i]] << "," << cpf[index[i]] << "," << address[index[i]] << "," << payload[index[i]] << std::endl;
-    }
+    printOutput(index, header, names, cpf, address, payload, n);
 
     //Ordenação por endereço
-    quickAddressSort(n, address, index);
+    initIndice(n, index);
+    quickSort(address, index, 0, n - 1);
 
-    for (int i = 0; i < 6; i++)
-    {
-        std::cout << header[i] << std::endl;
-    }
+    printOutput(index, header, names, cpf, address, payload, n);
 
-    for (int i = 0; i < n; i++)
-    {
-        std::cout << names[index[i]] << "," << cpf[index[i]] << "," << address[index[i]] << "," << payload[index[i]] << std::endl;
-    }
     //=============================================================== INSERTION SORT ===============================================================
 
     //Ordenação por nome
-    insetionNameSort(names, index, n);
+    initIndice(n, index);
+    insertionSort(names, index, n);
 
-    for (int i = 0; i < 6; i++)
-    {
-        std::cout << header[i] << std::endl;
-    }
+    printOutput(index, header, names, cpf, address, payload, n);
 
-    for (int i = 0; i < n; i++)
-    {
-        std::cout << names[index[i]] << "," << cpf[index[i]] << "," << address[index[i]] << "," << payload[index[i]] << std::endl;
-    }
    //Ordenação por CPF
-    insetionCpfSort(cpf, index, n);
+    initIndice(n, index);
+    insertionSort(cpf, index, n);
 
-    for (int i = 0; i < 6; i++)
-    {
-        std::cout << header[i] << std::endl;
-    }
-
-    for (int i = 0; i < n; i++)
-    {
-        std::cout << names[index[i]] << "," << cpf[index[i]] << "," << address[index[i]] << "," << payload[index[i]] << std::endl;
-    }
+    printOutput(index, header, names, cpf, address, payload, n);
     
     //Ordenação por endereço
-    insetionAddressSort(address, index, n);
+    initIndice(n, index);
+    insertionSort(address, index, n);
 
-    for (int i = 0; i < 6; i++)
-    {
-        std::cout << header[i] << std::endl;
-    }
-    
-    for (int i = 0; i < n; i++)
-    {
-        std::cout << names[index[i]] << "," << cpf[index[i]] << "," << address[index[i]] << "," << payload[index[i]] << std::endl;
-    }
+    printOutput(index, header, names, cpf, address, payload, n);
     
     delete[] names;
     delete[] cpf;

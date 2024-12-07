@@ -5,7 +5,7 @@ INC_DIR = include
 BIN_DIR = bin
 
 # Arquivo saída
-EXEC = $(BIN_DIR)/tp3.out
+EXEC = $(BIN_DIR)/tp1.out
 
 # Compilador e flags
 CC = g++

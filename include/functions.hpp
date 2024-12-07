@@ -15,20 +15,4 @@ void insertionSort(std::string * array,int * index, int tam);
 
 void loadArchive(std::string * names, std::string * cpf, std::string * address, std::string * payload, std::ifstream& archive);
 
-void selectionNameSort(int tam, std::string * names, int * index);
-
-void selectionCpfSort(int nunLines, std::string * cpf, int * index);
-
-void selectionAddressSort(int tam, std::string * address, int * index);
-
-void quickNameSort(int tam, std::string * names, int * index);
-
-void quickCpfSort(int tam, std::string * cpf, int * index);
-
-void quickAddressSort(int tam, std::string * address, int * index);
-
-void insetionNameSort(std::string * names, int * index, int tam);
-
-void insetionCpfSort(std::string * cpf, int * index, int tam);
-
-void insetionAddressSort(std::string * address, int * index, int tam);
+void printOutput(int * index, std::string * header, std::string * names, std::string * cpf, std::string * address, std::string * payload, int n);
