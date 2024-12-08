@@ -117,3 +117,36 @@ void printOutput(int * index, std::string * header, std::string * names, std::st
         std::cout << names[index[j]] << "," << cpf[index[j]] << "," << address[index[j]] << "," << payload[index[j]] << std::endl;
     }
 }
+
+void saveToCSV( std::string filename, 
+                double* selectionTimes_name, 
+                double* selectionTimes_cpf,
+                double* selectionTimes_address,
+                double* quickTimes_name,
+                double* quickTimes_cpf,
+                double* quickTimes_address, 
+                double* insertionTimes_name,
+                double* insertionTimes_cpf,
+                double* insertionTimes_address, 
+               int length) {
+    std::ofstream file(filename);
+    if (!file.is_open()) {
+        std::cerr << "Erro ao abrir o arquivo para salvar os tempos!" << std::endl;
+        return;
+    }
+
+    // Escrever os dados
+    for (int i = 0; i < length; i++) {
+        file << selectionTimes_name[i] << ","
+             << selectionTimes_cpf[i] << ","
+             << selectionTimes_address[i] << "," 
+             << quickTimes_name[i] << "," 
+             << quickTimes_cpf[i] << "," 
+             << quickTimes_address[i] << "," 
+             << insertionTimes_name[i] << ","
+             << insertionTimes_cpf[i] << ","
+             << insertionTimes_address[i] << "\n";
+    }
+
+    file.close();
+}
