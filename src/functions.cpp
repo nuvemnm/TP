@@ -14,6 +14,7 @@ void initIndice(int n, int indice[]){
     }
 }
 
+
 void selectionSort(std::string *string, int * index, int tam){
     for(int i = 0; i < tam-1; i++){
         int minor = i;
@@ -79,6 +80,8 @@ void insertionSort(std::string * array,int * index, int tam){
      }
 }
 
+
+
 void loadArchive(std::string * names, std::string * cpf, std::string * address, std::string * payload, std::ifstream& archive){
     
     std::string line = "";
@@ -108,27 +111,17 @@ void loadArchive(std::string * names, std::string * cpf, std::string * address, 
 }
 
 
-void printOutput(int * index, std::string * header, std::string * names, std::string * cpf, std::string * address, std::string * payload, int n){
+void printOutput(int * index, std::string * header, std::string * names, /*std::string * cpf, std::string * address, std::string * payload,*/ int n){
     for (int i = 0; i < 6; i++){
         std::cout << header[i] << std::endl;
     }
 
-    for (int j = 0; j < n; j++){
-        std::cout << names[index[j]] << "," << cpf[index[j]] << "," << address[index[j]] << "," << payload[index[j]] << std::endl;
+    for (int j = n-1; j >= 0 ; j--){
+        std::cout << names[index[j]]/*<< "," << cpf[index[j]] << "," << address[index[j]] << "," << payload[index[j]] */<< std::endl;
     }
 }
 
-void saveToCSV( std::string filename, 
-                double* selectionTimes_name, 
-                double* selectionTimes_cpf,
-                double* selectionTimes_address,
-                double* quickTimes_name,
-                double* quickTimes_cpf,
-                double* quickTimes_address, 
-                double* insertionTimes_name,
-                double* insertionTimes_cpf,
-                double* insertionTimes_address, 
-               int length) {
+void saveToCSV( std::string filename, std::string charges[], double * selectionTimes, double * quickTimes, double * insertionTimes) {
     std::ofstream file(filename);
     if (!file.is_open()) {
         std::cerr << "Erro ao abrir o arquivo para salvar os tempos!" << std::endl;
@@ -136,17 +129,13 @@ void saveToCSV( std::string filename,
     }
 
     // Escrever os dados
-    for (int i = 0; i < length; i++) {
-        file << selectionTimes_name[i] << ","
-             << selectionTimes_cpf[i] << ","
-             << selectionTimes_address[i] << "," 
-             << quickTimes_name[i] << "," 
-             << quickTimes_cpf[i] << "," 
-             << quickTimes_address[i] << "," 
-             << insertionTimes_name[i] << ","
-             << insertionTimes_cpf[i] << ","
-             << insertionTimes_address[i] << "\n";
-    }
+    for(int i = 0; i < 4; i++)
+    file << charges[i] << ","
+         << selectionTimes[i] << ","
+         << quickTimes[i] << "," 
+         << insertionTimes[i] << "\n";
+    
 
     file.close();
 }
+

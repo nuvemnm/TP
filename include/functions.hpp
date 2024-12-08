@@ -15,16 +15,7 @@ void insertionSort(std::string * array,int * index, int tam);
 
 void loadArchive(std::string * names, std::string * cpf, std::string * address, std::string * payload, std::ifstream& archive);
 
-void printOutput(int * index, std::string * header, std::string * names, std::string * cpf, std::string * address, std::string * payload, int n);
+void printOutput(int * index, std::string * header, std::string * names, /*std::string * cpf, std::string * address, std::string * payload, */int n);
 
-void saveToCSV(std::string filename, 
-                double* selectionTimes_name, 
-                double* selectionTimes_cpf,
-                double* selectionTimes_address,
-                double* quickTimes_name,
-                double* quickTimes_cpf,
-                double* quickTimes_address, 
-                double* insertionTimes_name,
-                double* insertionTimes_cpf,
-                double* insertionTimes_address, 
-               int length);
+void saveToCSV( std::string filename, std::string charges[], double * selectionTimes, double * quickTimes, double * insertionTimes);
+
