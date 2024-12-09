@@ -22,9 +22,9 @@ def plot_sort_times(csv_filename):
 
     # Selection Sort
     #plt.subplot(3, 1, 1)
-    plt.plot(charge, selection, label="Selection Sort - Nome", marker='o')
+    plt.plot(charge, selection, label="Merge Sort", marker='o')
     plt.plot(charge, quick, label="Quick Sort - CPF", marker='s')
-    plt.plot(charge, insertion, label="Insertion Sort - Endereço", marker='^')
+    plt.plot(charge, insertion, label="Shell Sort", marker='^')
     plt.title("Algoritmos de Ordenação")
     plt.xlabel("Carga de Trabalho")
     plt.ylabel("Tempo (segundos)")
