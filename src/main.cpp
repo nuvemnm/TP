@@ -19,9 +19,9 @@ int main(int argc, char *argv[]){
     double * quickTimes = new double[4];
     double * insertionTimes = new double[4];
     
-    for(int i = 0; i < 4; i++){
+    //for(int i = 0; i < 4; i++){
 
-        std::ifstream arquivo(ordenados[i]);
+        std::ifstream arquivo(archives[1]);
 
         if (!arquivo.is_open()) {
             std::cerr << "Erro ao abrir o arquivo!" << std::endl;
@@ -52,15 +52,15 @@ int main(int argc, char *argv[]){
 
 
         //Ordenação por nome
-        /*
         initIndice(n, index);
 
         auto start = std::chrono::high_resolution_clock::now();
         selectionSort(names, index, n);
         auto end = std::chrono::high_resolution_clock::now();
-        selectionTimes[i] = std::chrono::duration<double>(end - start).count();
+        selectionTimes[1] = std::chrono::duration<double>(end - start).count();
         //std::cout << "Selection Sort por Nome: " << duration<double>(end - start).count() << "ms\n" << std::endl;
         //printOutput(index, header, names, n);
+        /*
 
         //Ordenação por CPF
         //initIndice(n, index);
@@ -81,7 +81,6 @@ int main(int argc, char *argv[]){
         
         //printOutput(index, header, names, cpf, address, payload, n);
 
-        */
         //=============================================================== QUICKSORT ===============================================================
         
         //Ordenação por nome
@@ -90,8 +89,9 @@ int main(int argc, char *argv[]){
         auto start = std::chrono::high_resolution_clock::now();
         quickSort(names, index, 0, n - 1);
         auto end = std::chrono::high_resolution_clock::now();
-        quickTimes[i] = std::chrono::duration<double>(end - start).count();
+        quickTimes[1] = std::chrono::duration<double>(end - start).count();
         //std::cout << "Quick Sort por Nome: " << duration<double>(end - start).count() << "ms\n" << std::endl;
+        */
 
         //printOutput(index, header, names, cpf, address, payload, n);
         /*
@@ -147,18 +147,18 @@ int main(int argc, char *argv[]){
 
         */
         //printOutput(index, header, names, cpf, address, payload, n);
-        delete[] names;
-        delete[] cpf;
-        delete[] address;
-        delete[] payload;
-        delete[] index;
-    }
+    //}
     
     saveToCSV("tempos.csv", archives, selectionTimes, quickTimes, insertionTimes);
     
     delete[] selectionTimes;
     delete[] quickTimes;
     delete[] insertionTimes;
+    delete[] names;
+    delete[] cpf;
+    delete[] address;
+    delete[] payload;
+    delete[] index;
 
 
     return 0;

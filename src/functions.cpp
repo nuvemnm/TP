@@ -5,12 +5,15 @@ void swap(int* index1, int* index2) {
     int temp = *index1;
     *index1 = *index2;
     *index2 = temp;
+    std::cout << &index1 << std::endl;
+    std::cout << &index2 << std::endl;
 }
 
 void initIndice(int n, int indice[]){
     
     for(int i = 0; i < n; i++){
         indice[i] = i;
+        std::cout << &indice[i] << std::endl;
     }
 }
 
@@ -19,6 +22,8 @@ void selectionSort(std::string *string, int * index, int tam){
     for(int i = 0; i < tam-1; i++){
         int minor = i;
         for(int j = i+1; j < tam; j++){
+            std::cout << &index[j] << std::endl;
+            std::cout << &index[minor] << std::endl;
             if(string[index[j]] < string[index[minor]]){
                 minor = j;
             }
@@ -35,10 +40,12 @@ void selectionSort(std::string *string, int * index, int tam){
 int partition(std::string * array, int * index, int low, int high){
     //Seleciona o elemento mais a direita como pivo
     std::string pivo = array[index[high]];
+    std::cout << &index[high] << std::endl;
     //Indicce do maior elemento
     int i = (low - 1);
 
     for(int j = low; j < high; j++){
+        std::cout << &index[j] << std::endl;
         if(array[index[j]] <= pivo){
             //Se o elemento for menor que o pivo 
             //troca ele com o maior elemento (i)
@@ -71,12 +78,15 @@ void insertionSort(std::string * array,int * index, int tam){
         int keyIndex = index[i];
         std::string key = array[keyIndex];
         int j = i - 1;
-
+        std::cout << &index[i] << std::endl;
         while(j >= 0 && array[index[j]] > key){
             index[j+1] = index[j];
+            std::cout << &index[j] << std::endl;
             j--;
         }
+        std::cout << &index[j] << std::endl;
         index[j+1] = keyIndex;
+        std::cout << &index[j+1] << std::endl;
      }
 }
 
