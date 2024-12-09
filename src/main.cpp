@@ -11,7 +11,7 @@ int main(int argc, char *argv[]){
 
     using namespace std::chrono;
     
-    std::string archives[4] = {"cad.r1000.p1000.xcsv", "cad.r1000.p5000.xcsv", "cad.r5000.p1000.xcsv", "cad.r5000.p5000.xcsv"};
+    std::string archives[5] = {"input.xcsv", "cad.r1000.p1000.xcsv", "cad.r1000.p5000.xcsv", "cad.r5000.p1000.xcsv", "cad.r5000.p5000.xcsv"};
     std::string ordenados[4] = {"11ordenado.xcsv", "15ordenado.xcsv", "51ordenado.xcsv", "55ordenado.xcsv"};
     std::string inversos[4] = {"11inverso.xcsv", "15inverso.xcsv", "51inverso.xcsv", "55inverso.xcsv"};
 
@@ -51,35 +51,35 @@ int main(int argc, char *argv[]){
     //============================================================= SELECTION SORT =============================================================
 
 
+        /*
         //Ordenação por nome
         initIndice(n, index);
 
         auto start = std::chrono::high_resolution_clock::now();
-        selectionSort(names, index, n);
+        mergeSort(names, index, 0, n - 1);
         auto end = std::chrono::high_resolution_clock::now();
         selectionTimes[1] = std::chrono::duration<double>(end - start).count();
         //std::cout << "Selection Sort por Nome: " << duration<double>(end - start).count() << "ms\n" << std::endl;
-        //printOutput(index, header, names, n);
-        /*
+        printOutput(index, header, names, cpf, address, payload, n);
 
         //Ordenação por CPF
         //initIndice(n, index);
         start = std::chrono::high_resolution_clock::now();
-        selectionSort(cpf, index, n);
+        mergeSort(cpf, index, 0, n - 1);
         end = std::chrono::high_resolution_clock::now();
         //std::cout << "Selection Sort por CPF: " << duration<double>(end - start).count() << "ms\n" << std::endl;
         
-        //printOutput(index, header, names, cpf, address, payload, n);
+        printOutput(index, header, names, cpf, address, payload, n);
 
         //Ordenação por endereço
         initIndice(n, index);
         
         start = std::chrono::high_resolution_clock::now();
-        selectionSort(address, index, n);
+        mergeSort(address, index, 0, n - 1);
         end = std::chrono::high_resolution_clock::now();
         //std::cout << "Selection Sort por Endereço: " << duration<double>(end - start).count() << "ms\n" << std::endl;
         
-        //printOutput(index, header, names, cpf, address, payload, n);
+        printOutput(index, header, names, cpf, address, payload, n);
 
         //=============================================================== QUICKSORT ===============================================================
         
@@ -116,37 +116,36 @@ int main(int argc, char *argv[]){
         //printOutput(index, header, names, cpf, address, payload, n);
 
         */
-        //=============================================================== INSERTION SORT ===============================================================
+        //=============================================================== SHELL SORT ===============================================================
 
         //Ordenação por nome
-        /*
         initIndice(n, index);
-        start = std::chrono::high_resolution_clock::now();
-        insertionSort(names, index, n);
-        end = std::chrono::high_resolution_clock::now();
-        insertionTimes[i] = std::chrono::duration<double>(end - start).count();
+        auto start = std::chrono::high_resolution_clock::now();
+        shellSort(names, index, n);
+        auto end = std::chrono::high_resolution_clock::now();
+        insertionTimes[1] = std::chrono::duration<double>(end - start).count();
         //std::cout << "Insertion Sort por Nome: " << duration<double>(end - start).count() << "ms\n" << std::endl;
+/*
 
-
-        //printOutput(index, header, names, cpf, address, payload, n);
+        printOutput(index, header, names, cpf, address, payload, n);
         //Ordenação por CPF
         initIndice(n, index);
         start = std::chrono::high_resolution_clock::now();
-        insertionSort(cpf, index, n);
+        shellSort(cpf, index, n);
         end = std::chrono::high_resolution_clock::now();
         //std::cout << "Insertion Sort por CPF: " << duration<double>(end - start).count() << "ms\n" << std::endl;
         
-        //printOutput(index, header, names, cpf, address, payload, n);
+        printOutput(index, header, names, cpf, address, payload, n);
         
         //Ordenação por endereço
         initIndice(n, index);
         start = std::chrono::high_resolution_clock::now();
-        insertionSort(address, index, n);
+        shellSort(address, index, n);
         end = std::chrono::high_resolution_clock::now();
         //std::cout << "Insertion Sort por Endereço: " << duration<double>(end - start).count() << "ms\n" << std::endl;
 
-        */
-        //printOutput(index, header, names, cpf, address, payload, n);
+        printOutput(index, header, names, cpf, address, payload, n);
+*/
     //}
     
     saveToCSV("tempos.csv", archives, selectionTimes, quickTimes, insertionTimes);
